@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+    <!-- 어펜더 스택 -->
+    <Appenders>
+        <!-- 콘솔 어펜더 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 패턴 문자열 지정 -->
+            <PatternLayout pattern="%5p [%t] - %m%n" />
+        </Console>
+    </Appenders>
+    <!-- 로거 스택 -->
+    <Loggers>
+        <!-- 로거 -->
+        <Logger name="org.mybatis.persistence.ShopMapper"
+                level="trace" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+        <!-- 루트 로거 -->
+        <Root level="debug">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

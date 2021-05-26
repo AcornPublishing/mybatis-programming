@@ -1,0 +1,13 @@
+package day3;
+
+public class WhileExecutor {
+	public static void main(String[] args) {
+		Car xxx = new Car();
+		System.out.println(xxx.price);
+		
+		Car yyy = new Car();
+		yyy.price = 200;
+		System.out.println(yyy.price);
+		
+	}
+}

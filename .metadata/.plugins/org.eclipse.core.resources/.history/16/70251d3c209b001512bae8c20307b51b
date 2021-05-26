@@ -1,0 +1,9 @@
+package day3;
+
+public class Calculator {
+	int getArraySum(int[] subject) {
+		int size = subject.length;
+		
+		return (subject[0] + subject[1] + subject[2]);
+	}
+}

@@ -1,0 +1,8 @@
+package day3;
+
+public class Car {
+
+	int price = 100;
+	String model = "A1";
+
+}

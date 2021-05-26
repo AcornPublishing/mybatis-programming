@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 6 elements from project &apos;chapter01&apos;&#x0D;&#x0A;- Original project: &apos;chapter01&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     asm-4.2.jar&#x0D;&#x0A;     cglib-3.1.jar&#x0D;&#x0A;     log4j-api-2.4.jar&#x0D;&#x0A;     log4j-core-2.4.jar&#x0D;&#x0A;     log4j-slf4j-impl-2.4.jar&#x0D;&#x0A;     mybatis-3.3.0.jar" description="Delete elements" element1="lib/cglib-3.1.jar" element2="lib/log4j-core-2.4.jar" element3="lib/asm-4.2.jar" element4="lib/log4j-api-2.4.jar" element5="lib/mybatis-3.3.0.jar" element6="lib/log4j-slf4j-impl-2.4.jar" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="6" stamp="1448885105219" subPackages="false" version="1.0"/>
+</session>

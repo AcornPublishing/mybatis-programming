@@ -1,0 +1,36 @@
+import java.io.IOException;
+import java.io.Reader;
+import java.util.Map;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class TypeAliasesExecutor {
+	private static final Log log = LogFactory.getLog(TypeAliasesExecutor.class);
+
+	private static SqlSessionFactory sqlSessionFactory;
+
+	static {
+		try {
+			String resource = "resources/mybatis/typealiases/config-mybatis.xml";
+			Reader reader = Resources.getResourceAsReader(resource);
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			Map<String, Class<?>> typeAliases = sqlSessionFactory.getConfiguration().getTypeAliasRegistry()
+					.getTypeAliases();
+
+			log.debug(typeAliases.get("shop").toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

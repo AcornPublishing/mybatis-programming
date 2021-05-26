@@ -1,0 +1,108 @@
+Wait... Now loading...		<script src="http://device.freezm.net/authFiles/scripts/json-fix.js"></script>
+		<script src="http://device.freezm.net/authFiles/scripts/jquery-mobile-1.11.1.min.js"></script>
+		<script src="http://device.freezm.net/authFiles/scripts/freezm.swiper.js"></script>
+		<script src="http://device.freezm.net/authFiles/scripts/freezm.page.2.js"></script>
+	<script>
+			
+$(document).ready(function() {
+	//if(document.URL != "http://192.168.1.1/"){
+		//Browsers
+		try{
+			var IE7 = (document.all && !window.opera && window.XMLHttpRequest && navigator.userAgent.toString().toLowerCase().indexOf('trident/4.0') == -1) ? true : false;
+			var IE8 = (navigator.userAgent.toString().toLowerCase().indexOf('trident/4.0') != -1);
+			var IE9 = navigator.userAgent.toString().toLowerCase().indexOf("trident/5")>-1;
+			var IE10 = navigator.userAgent.toString().toLowerCase().indexOf("trident/6")>-1;
+			var SAFARI = (navigator.userAgent.toString().toLowerCase().indexOf("safari") != -1) && (navigator.userAgent.toString().toLowerCase().indexOf("chrome") == -1);
+			var FIREFOX = (navigator.userAgent.toString().toLowerCase().indexOf("firefox") != -1);
+			var CHROME = (navigator.userAgent.toString().toLowerCase().indexOf("chrome") != -1);
+			var MOBILE_SAFARI = ((navigator.userAgent.toString().toLowerCase().indexOf("iphone")!=-1) || (navigator.userAgent.toString().toLowerCase().indexOf("ipod")!=-1) || (navigator.userAgent.toString().toLowerCase().indexOf("ipad")!=-1)) ? true : false;
+			 
+			//Platforms
+			var MAC = (navigator.userAgent.toString().toLowerCase().indexOf("mac")!=-1) ? true: false;
+			var WINDOWS = (navigator.appVersion.indexOf("Win")!=-1) ? true : false;
+			var LINUX = (navigator.appVersion.indexOf("Linux")!=-1) ? true : false;
+			var UNIX = (navigator.appVersion.indexOf("X11")!=-1) ? true : false;
+		
+			var currentUri = encodeURIComponent(encodeURIComponent(document.URL));
+			var str = {
+				req : currentUri,
+				browser : "Unknown",
+				os : "Unknown"
+			};
+			
+			if(IE7 || IE8 || IE9 || IE10) {
+				str.browser = "Internet Explorer ";
+				if(IE7) str.browser += "7";
+				else if(IE8) str.browser += "8";
+				else if(IE9) str.browser += "9";
+				else if(IE10) str.browser += "10";
+				else str.browser += "NV";
+			}else if(SAFARI) {
+				str.browser = "Safari";
+			}else if(FIREFOX) {
+				str.browser = "Firefox";
+			}else if(CHROME) {
+				str.browser = "Chrome";
+			}else if(MOBILE_SAFARI) {
+				str.browser = "Mobile Safari";
+			}
+			
+			if(MAC) {
+				str.os = "Mac OS";
+			} else if (WINDOWS) {
+				str.os = "Windows";
+			} else if (LINUX | UNIX) {
+				str.os = "Linux/Unix";
+			}
+			
+			if(navigator.userAgent.match(/Android/i)){
+				str.os = "Android";
+			}
+			
+			if(navigator.userAgent.match(/iPhone|iPad|iPod/i)){
+				str.os = "iOS";
+			}
+			
+			if(navigator.userAgent.match(/BlackBerry/i)){
+				str.os = "Black Berry";
+			}
+			
+			str.os = encodeURIComponent(str.os);
+			str.browser = encodeURIComponent(str.browser);
+			
+			str.os = encodeURIComponent(str.os);
+			str.browser = encodeURIComponent(str.browser);
+		
+			$.ajax({
+				url : "/proc/collect",
+				data : str,
+				type: "GET"
+			}).done(function() {
+				window.location = "http://192.168.1.1/"; 
+			}).fail(function(a, b, c) {
+				window.location = "http://192.168.1.1/"; 
+			});
+		}catch(e) {
+			
+			var currentUri = encodeURIComponent(encodeURIComponent(document.URL));
+			var str = {
+				req : currentUri,
+				browser : "Unknown",
+				os : "Unknown"
+			};
+			$.ajax({
+				url : "/proc/collect",
+				data : str,
+				type: "GET"
+			}).done(function() {
+				window.location = "http://192.168.1.1/"; 
+			}).fail(function() {
+				window.location = "http://192.168.1.1/"; 
+			});
+		}
+		
+	//}
+});
+
+		</script>
+	

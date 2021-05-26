@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.persistence.ShopMapper">
+    <!-- 등록 매핑 구문 -->
+    <insert id="insert" parameterType="shop">
+        INSERT INTO SHOP (SHOP_NO, SHOP_NAME, SHOP_LOCATION, SHOP_STATUS)
+        VALUES (#{shopNo}, #{shopName}, #{shopLocation}, #{shopStatus})
+    </insert>
+
+    <!-- 조회 매핑 구문 -->
+    <select id="select" parameterType="shop" resultType="shop">
+        SELECT SHOP_NO, SHOP_NAME, SHOP_LOCATION, SHOP_STATUS
+        FROM SHOP
+        WHERE SHOP_NO = #{shopNo}
+    </select>
+
+    <!-- 수정 매핑 구문 -->
+    <update id="update" parameterType="shop">
+        UPDATE SHOP
+        SET SHOP_STATUS = #{shopStatus}
+        WHERE SHOP_NO = #{shopNo}
+    </update>
+
+    <!-- 삭제 매핑 구문 -->
+    <delete id="delete" parameterType="shop">
+        DELETE SHOP
+        WHERE SHOP_NO = #{shopNo}
+    </delete>
+</mapper>

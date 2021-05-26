@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.persistence.ShopMapper">
+    <!-- 서드파티 캐시로 'Encache'를 사용할 경우
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+    -->
+    <cache />
+    <parameterMap id="shopParameterMap" type="shop">
+        <parameter property="shopNo" javaType="int" jdbcType="NUMERIC" />
+        <parameter property="shopName" javaType="string" jdbcType="VARCHAR" />
+        <parameter property="shopLocation" javaType="string" jdbcType="VARCHAR" />
+        <parameter property="shopStatus" javaType="string" jdbcType="VARCHAR" />
+    </parameterMap>
+
+    <resultMap id="shopResultMap" type="shop">
+        <id property="shopNo" column="SHOP_NO" javaType="int" jdbcType="NUMERIC" />
+        <result property="shopName" column="SHOP_NAME" javaType="string" jdbcType="VARCHAR" />
+        <result property="shopLocation" column="SHOP_LOCATION" javaType="string" jdbcType="BLOB" />
+        <result property="shopStatus" column="SHOP_STATUS" javaType="string" jdbcType="VARCHAR" />
+        <!-- 
+        <collection property="listToy" column="{shopNo=SHOP_NO}" ofType="toy" select="org.mybatis.persistence.ToyMapper.selectListToy" />
+        -->
+    </resultMap>
+
+    <sql id="selectSql">
+        SELECT *
+        FROM   SHOP
+    </sql>
+
+    <sql id="whereSql">
+        <where>
+            <if test="shopNo > 0">AND SHOP_NO = #{shopNo}</if>
+            <if test="shopName != null">AND SHOP_NAME = #{shopName}</if>
+            <if test="shopLocation != null">AND SHOP_LOCATION LIKE #{shopLocation}</if>
+<!--
+            <if test="shopStatus != null">AND SHOP_STATUS = #{shopStatus}</if>
+-->
+<!--
+            <choose>
+                <when test="shopStatus != null and shopStatus eq 'O'.toString()">AND SHOP_STATUS = 'Y'</when>
+                <when test="shopStatus != null and shopStatus eq 'X'.toString()">AND SHOP_STATUS = 'N'</when>
+                <otherwise>AND SHOP_STATUS = ''</otherwise>
+            </choose>
+-->
+<!--
+            <if test="listStatus != null">
+                <foreach item="item" index="index" collection="listStatus" open="AND SHOP_STATUS IN (" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+-->
+        </where>
+<!--
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="shopNo > 0">AND SHOP_NO = #{shopNo}</if>
+            <if test="shopName != null">AND SHOP_NAME = #{shopName}</if>
+            <if test="shopLocation != null">AND UPPER(SHOP_LOCATION) LIKE ('%' || UPPER(#{shopLocation}) || '%')</if>
+            <if test="shopStatus != null">AND SHOP_STATUS = #{shopStatus}</if>
+        </trim>
+-->
+    </sql>
+
+    <select id="select" parameterType="shop" resultMap="shopResultMap">
+        <include refid="selectSql" />
+        <include refid="whereSql" />
+	</select>
+
+    <select id="selectShopJoinToy" parameterType="shop" resultMap="shopResultMap">
+        SELECT S.SHOP_NO, S.SHOP_NAME, S.SHOP_LOCATION, S.SHOP_STATUS, T.TOY_NO, T.TOY_NAME, T.TOY_PRICE, T.SHOP_NO         
+        FROM   SHOP S LEFT OUTER JOIN TOY  T
+          ON   S.SHOP_NO = T.SHOP_NO
+        WHERE  S.SHOP_NO = #{shopNo}
+    </select>
+    
+    <select id="list" parameterType="hashmap" resultType="hashmap">
+        <include refid="selectSql" />
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="shop">
+        <selectKey keyProperty="shopNo" resultType="int" order="BEFORE">
+            SELECT NVL(MAX(SHOP_NO), 0) + 1 FROM SHOP
+        </selectKey>
+        INSERT INTO SHOP 
+           (SHOP_NO, SHOP_NAME, SHOP_LOCATION, SHOP_STATUS )
+        VALUES
+           (#{shopNo}, #{shopName}, #{shopLocation}, #{shopStatus})
+    </insert>
+
+    <update id="update" parameterType="shop">
+        UPDATE SHOP
+        <set>
+            <if test="shopName != null">SHOP_NAME = #{shopName},</if>
+            <if test="shopLocation != null">SHOP_LOCATION = #{shopLocation},</if>
+            <if test="shopStatus != null" >SHOP_STATUS = #{shopStatus},</if>
+        </set>
+<!--
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="shopName != null">SHOP_NAME = #{shopName},</if>
+            <if test="shopLocation != null">SHOP_LOCATION = #{shopLocation},</if>
+            <if test="shopStatus != null" >SHOP_STATUS = #{shopStatus},</if>
+        </trim>
+-->
+        WHERE  SHOP_NO = #{shopNo}
+    </update>
+
+    <delete id="delete" parameterType="shop">
+        DELETE FROM SHOP
+        WHERE  SHOP_NO = #{shopNo} 
+    </delete>
+</mapper>

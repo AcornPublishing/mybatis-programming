@@ -1,0 +1,19 @@
+package day3;
+
+public class Calculator {
+	String getWordAppend(String[] words) {
+		int size = words.length;
+		
+		for ( int i = 0 ; i < size ; C ) {
+			
+		}
+		words[0]
+		words[1]
+		words[2]
+		    .
+		    .
+		    .
+				
+		return "";
+	}
+}

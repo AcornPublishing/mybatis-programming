@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;chapter07/src/org/mybatis/persistence/ShopStockDao.jsp&apos; to &apos;ShopStockDao.java&apos;" description="Rename resource &apos;ShopStockDao.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/org/mybatis/persistence/ShopStockDao.jsp" name="ShopStockDao.java" stamp="1471356467053" updateReferences="true"/>
+</session>

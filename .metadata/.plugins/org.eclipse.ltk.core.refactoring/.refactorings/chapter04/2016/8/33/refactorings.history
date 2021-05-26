@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;chapter04/src/log4j2.xml&apos; to &apos;_log4j2.xml&apos;" description="Rename resource &apos;log4j2.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/log4j2.xml" name="_log4j2.xml" stamp="1470810952446" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;chapter04/src/_log4j2.xml&apos; to &apos;log4j2.xml&apos;" description="Rename resource &apos;_log4j2.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/_log4j2.xml" name="log4j2.xml" stamp="1470811355687" updateReferences="true"/>
+</session>

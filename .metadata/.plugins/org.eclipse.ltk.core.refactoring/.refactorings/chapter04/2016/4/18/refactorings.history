@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;chapter04/src/resources/mybatis/plugins/dsfsddsfs&apos; to &apos;config-mybatis.xml&apos;" description="Rename resource &apos;dsfsddsfs&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/resources/mybatis/plugins/dsfsddsfs" name="config-mybatis.xml" stamp="1461749373174" updateReferences="true"/>
+</session>

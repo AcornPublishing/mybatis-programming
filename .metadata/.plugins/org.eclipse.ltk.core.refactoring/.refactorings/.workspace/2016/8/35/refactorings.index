@@ -1,0 +1,6 @@
+1471833563936	Delete resource 'dao/src/org/heartbeat'
+1471835445371	Delete resource 'dao/WebContent/WEB-INF/lib/commons-logging-1.1.1.jar'
+1472094358957	Delete resource 'dao/src/resources/mybatis/ShopMapper.xml'
+1472094400747	Delete resource 'dao/src/org/mybatis/domain/Shop.java'
+1472095448940	Delete 2 resources
+1472102299780	Delete resource 'dao/WebContent/WEB-INF/jsp/shop'

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.persistence.ShopMapper">
+	<resultMap id="shopResultMap" type="java.util.HashMap">
+		<id column="SHOP_NO" property="shopNo" javaType="int" jdbcType="NUMERIC" />
+		<result column="SHOP_NAME" property="shopName" javaType="string" jdbcType="VARCHAR" />
+		<result column="SHOP_LOCATION" property="shopLocation" javaType="string" jdbcType="CLOB" />
+		<result column="SHOP_STATUS" property="shopStatus" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="select" parameterType="java.util.HashMap" resultMap="shopResultMap">
+		SELECT SHOP_NO, SHOP_NAME, SHOP_LOCATION, SHOP_STATUS
+		FROM SHOP
+		<where>
+			<if test="shopNo > 0">AND SHOP_NO = #{shopNo}</if>
+		</where>
+	</select>
+
+    <insert id="insert" parameterType="java.util.HashMap">
+        <selectKey keyColumn="SHOP_NO" keyProperty="shopNo">
+            SELECT SEQ_SHOP_NO.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO SHOP (SHOP_NO, SHOP_NAME, SHOP_LOCATION, SHOP_STATUS)
+        VALUES (#{shopNo}, #{shopName}, #{shopLocation}, #{shopStatus})
+    </insert>
+
+    <update id="update" parameterType="java.util.HashMap">
+        UPDATE SHOP
+        <set>
+            <if test="shopStatus != null and shopStatus != ''">
+                SHOP_STATUS = #{shopStatus},
+            </if>
+        </set>
+        WHERE SHOP_NO = #{shopNo}
+    </update>
+
+    <delete id="delete" parameterType="java.util.HashMap">
+        DELETE FROM SHOP WHERE SHOP_NO = #{shopNo}
+    </delete>
+</mapper>

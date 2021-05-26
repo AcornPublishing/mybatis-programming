@@ -1,0 +1,16 @@
+package day3;
+
+public class WhileExecutor {
+	public static void main(String[] args) {
+		int korean = 100;
+		int english = 90;
+		int math = 90;
+		
+		int[] subject = new int[3];
+		subject[0] = 100;
+		subject[0] = 90;
+		subject[0] = 90;
+		
+		int[] subject = {100, 90, 90};
+	}
+}

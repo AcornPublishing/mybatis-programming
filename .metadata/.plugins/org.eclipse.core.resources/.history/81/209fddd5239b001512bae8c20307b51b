@@ -1,0 +1,11 @@
+package day3;
+
+public class WhileExecutor {
+	public static void main(String[] args) {
+		String[] subject = { "I", "am", "a", "Student", "!" };
+
+		Calculator cal = new Calculator();
+		int sum = cal.getWordAppend(words)(subject);
+		System.out.println(sum);
+	}
+}

@@ -1,0 +1,46 @@
+import java.io.IOException;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class MappersExecutor {
+	private static final Log log = LogFactory.getLog(MappersExecutor.class);
+
+	private static SqlSessionFactory sqlSessionFactory;
+
+	static {
+		try {
+			String resource = "resources/mybatis/mappers/config-mybatis.xml";
+			Reader reader = Resources.getResourceAsReader(resource);
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		SqlSession sqlSession = null;
+
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("shopNo", 1);
+
+			Map<String, Object> shop = sqlSession.selectOne("org.mybatis.persistence.ShopMapper.select", parameters);
+
+			log.debug(shop.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
+}

@@ -1,0 +1,12 @@
+package day3;
+
+public class Calculator {
+
+	int getSum(int a, int b) {
+		return a + b;
+	}
+
+	int getMinus(int x, int b) {
+		return x - y;
+	}
+}

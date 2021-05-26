@@ -1,0 +1,37 @@
+import java.io.IOException;
+import java.io.Reader;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.type.TypeHandler;
+import org.mybatis.custom.CustomClobTypeHandler;
+
+public class TypeHandlersExecutor {
+	private static final Log log = LogFactory.getLog(TypeHandlersExecutor.class);
+
+	private static SqlSessionFactory sqlSessionFactory;
+
+	static {
+		try {
+			String resource = "resources/mybatis/typehandlers/config-mybatis.xml";
+
+			Reader reader = Resources.getResourceAsReader(resource);
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			TypeHandler<?> typeHandler = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry()
+					.getMappingTypeHandler(CustomClobTypeHandler.class);
+
+			log.debug(typeHandler.getClass().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

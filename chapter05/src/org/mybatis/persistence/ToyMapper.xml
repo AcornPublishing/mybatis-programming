@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.persistence.ToyMapper">
+    <parameterMap id="toyParameterMap" type="toy" >
+        <parameter property="toyNo" javaType="_int" jdbcType="NUMERIC" />
+        <parameter property="toyName" javaType="string" jdbcType="VARCHAR" />
+        <parameter property="toyPrice" javaType="_int" jdbcType="NUMERIC" />
+        <parameter property="shopNo" javaType="_int" jdbcType="NUMERIC" />
+    </parameterMap>
+    
+    <resultMap id="toyResultMap" type="toy">
+        <id property="toyNo" column="TOY_NO" javaType="_int" jdbcType="NUMERIC" />
+        <result property="toyName" column="TOY_NAME" javaType="string" jdbcType="VARCHAR" />
+        <result property="toyPrice" column="TOY_PRICE" javaType="_int" jdbcType="NUMERIC" />
+        <result property="shopNo" column="SHOP_NO" javaType="_int" jdbcType="NUMERIC" />
+    </resultMap>
+    
+    <sql id="selectSql">
+        SELECT TOY_NO, TOY_NAME, TOY_PRICE, SHOP_NO
+        FROM   TOY
+    </sql>
+
+    <sql id="whereSql">
+        <where>
+            <if test="toyNo > 0">AND TOY_NO = #{shopNo}</if>
+            <if test="toyName != null">AND TOY_NAME = #{shopName}</if>
+            <if test="toyPrice > 0">AND TOY_PRICE >= #{toyPrice}</if>
+            <if test="shopNo > 0">AND SHOP_NO = #{shopNo}</if>
+        </where>
+    </sql>
+
+    <select id="select" parameterType="toy" resultMap="toyResultMap">
+        <include refid="selectSql" />
+        <include refid="whereSql" />
+	</select>
+
+    <select id="list" parameterType="toy" resultMap="toyResultMap">
+        <include refid="selectSql" />
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="toy">
+        <selectKey keyProperty="no" resultType="int">
+            SELECT MAX(NO) FROM TOY
+        </selectKey>
+        INSERT INTO TOY 
+           (TOY_NO, TOY_NAME, TOY_PRICE, SHOP_NO)
+        VALUES
+           (#{toyNo}, #{toyName}, #{toyPrice}, #{shopNo})
+    </insert>
+
+    <update id="update" parameterType="toy">
+        UPDATE TOY
+        <set>
+            <if test="toyName != null">TOY_NAME = #{toyName},</if>
+            <if test="toyPrice > 0">TOY_PRICE = #{toyPrice},</if>
+            <if test="shopNo > 0">SHOP_NO = #{shopNo},</if>
+        </set>
+        WHERE  TOY_NO = #{toyNo}
+    </update>
+
+    <delete id="delete" parameterType="toy">
+        DELETE FROM TOY
+        WHERE  TOY_NO = #{toyNo} 
+    </delete>
+</mapper>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 3 resources" deleteContents="false" description="Delete 3 resources" element1="/chapter08_da0/WebContent/WEB-INF/lib/apache-log4j-2.3-bin.zip" element2="/chapter08_da0/WebContent/WEB-INF/lib/mybatis-3.3.0.zip" element3="/chapter08_da0/WebContent/WEB-INF/lib/mybatis-spring-1.2.3.zip" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="3" stamp="1448636274285"/>
+</session>

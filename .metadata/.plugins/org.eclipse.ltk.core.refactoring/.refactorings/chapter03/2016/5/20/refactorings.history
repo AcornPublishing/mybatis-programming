@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Shop.java&apos; to &apos;appendix_d/src/org.mybatis.domain&apos;&#x0D;&#x0A;- Original project: &apos;chapter03&apos;&#x0D;&#x0A;- Destination element: &apos;appendix_d/src/org.mybatis.domain&apos;&#x0D;&#x0A;- Original element: &apos;org.mybatis.domain.Shop.java&apos;" description="Copy compilation unit" destination="=appendix_d/src&lt;org.mybatis.domain" element1="/src&lt;org.mybatis.domain{Shop.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1462852915836" units="1" version="1.0"/>
+</session>

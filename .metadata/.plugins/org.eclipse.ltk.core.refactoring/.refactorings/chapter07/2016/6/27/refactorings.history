@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 elements from project &apos;chapter07&apos;&#x0D;&#x0A;- Original project: &apos;chapter07&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     chapter07/src/resources.mybatis&#x0D;&#x0A;     config-mybatis.xml&#x0D;&#x0A;     ShopMapper.xml&#x0D;&#x0A;     log4j2.xml" description="Delete elements" element1="src/log4j2.xml" element2="/src&lt;resources.mybatis" element3="/src&lt;resources" elements="2" flags="589830" id="org.eclipse.jdt.ui.delete" resources="1" stamp="1467035547292" subPackages="false" version="1.0"/>
+</session>

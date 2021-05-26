@@ -1,0 +1,11 @@
+package day3;
+
+public class WhileExecutor {
+	public static void main(String[] args) {
+		int[] subject = {100, 90, 90};
+		
+		Calculator cal = new Calculator();
+		int sum = cal.getArraySum(subject);
+		System.out.println(sum);
+	}
+}

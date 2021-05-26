@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 셋팅 스택 -->
+	<settings>
+	    <!-- 셋팅 -->
+	    <setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<!-- 타입 알리아스 스택 -->
+	<typeAliases>
+		<!-- 타입 알리아스 -->
+		<typeAlias alias="shop" type="org.mybatis.domain.Shop" />
+	</typeAliases>
+
+	<!-- 환경 스택 -->
+	<environments default="default">
+		<!-- 환경 -->
+		<environment id="default">
+			<!-- 트랜잭션 관리자 -->
+			<transactionManager type="JDBC" />
+			<!-- 데이터 소스 -->
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+				<property name="username" value="mybatis" />
+				<property name="password" value="mybatis$" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 매퍼 스택 -->
+	<mappers>
+		<!-- 매퍼 -->
+		<mapper resource="resources/mybatis/ShopMapper.xml" />
+	</mappers>
+</configuration>

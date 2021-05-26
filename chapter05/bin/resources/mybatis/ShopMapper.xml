@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.persistence.ShopMapper">
+    <!-- 등록 매핑 구문 -->
+    <insert id="insert" parameterType="java.util.HashMap">
+        <!-- 자동 생성키 조회 -->
+        <selectKey keyColumn="SHOP_NO" keyProperty="shopNo" order="BEFORE"
+                resultType="int">
+            SELECT SEQ_SHOP_NO.NEXTVAL
+            FROM DUAL
+        </selectKey>
+
+        INSERT INTO SHOP
+            (SHOP_NO, SHOP_NAME, SHOP_LOCATION, SHOP_STATUS)
+        VALUES
+            (#{shopNo}, #{shopName}, #{shopLocation}, #{shopStatus})
+    </insert>
+</mapper>

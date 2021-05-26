@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete 2 resources" deleteContents="false" description="Delete 2 resources" element1="/dao/src/org/mybatis/persistence/ShopDao.java" element2="/dao/src/org/mybatis/persistence/ShopDaoImpl.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="2" stamp="1471329987901"/>&#x0A;<refactoring comment="Delete 2 resources" deleteContents="false" description="Delete 2 resources" element1="/dao/src/org/mybatis/service/ShopService.java" element2="/dao/src/org/mybatis/service/ShopServiceImpl.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="2" stamp="1471329991152"/>
+</session>
